@@ -6,6 +6,7 @@ import mk.ukim.finki.wp.lab.service.BookService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookServiceImpl  implements BookService {
@@ -24,5 +25,10 @@ public class BookServiceImpl  implements BookService {
     @Override
     public List<Book> searchBooks(String text, Double rating) {
         return bookRepository.searchBooks(text, rating);
+    }
+
+    @Override
+    public Optional<Book> getBook(String text) {
+        return this.bookRepository.getBook(text);
     }
 }

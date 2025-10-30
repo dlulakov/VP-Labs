@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            width: 800px;
+            margin: auto;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .book-option {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .book-option:hover {
+            background-color: #f5f5f5;
+        }
+
+        #confirm {
+            display: flex;
+            justify-content: start;
+            align-content: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li th:each="reservation: ${bookReservationList}">
+            <p th:text="'Reader Name: ' + ${reservation.readerName}"></p>
+            <p th:text="'Reader Addres: ' + ${reservation.readerAddress}"></p>
+            <p th:text="'Number Of Copies: ' + ${reservation.numberOfCopies}"></p>
+            <h3>Book</h3>
+            <p th:text="'Book Title: ' + ${reservation.book.title}"></p>
+            <p th:text="'Book Genre: ' + ${reservation.book.genre}"></p>
+            <p th:text="'Book Rating: ' + ${reservation.book.averageRating}"></p>
+        </li>
+    </ul>
+</body>
+</html>

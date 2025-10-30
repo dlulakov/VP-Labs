@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class BookReservation {
 
-    private String bookTitle;
+    private Book book;
     private String readerName;
     private String readerAddress;
     private Long numberOfCopies;

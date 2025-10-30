@@ -38,6 +38,10 @@
 </header>
 <main>
 
+    <form th:action="@{/detail-book-reservation}" th:method="GET">
+        <input type="submit" value="Detail Book Reservation">
+    </form>
+
     <form th:action="@{/}" th:method="GET">
         <label for="searchTitle" th:text="Title"></label>
         <input type="text" name="searchTitle" id="searchTitle" >
