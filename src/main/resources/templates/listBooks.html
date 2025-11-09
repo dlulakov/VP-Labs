@@ -30,6 +30,17 @@
             align-content: center;
             padding: 10px;
         }
+        #books{
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+        }
+        #books-buttons{
+            display: flex;
+            justify-content: space-between;
+            align-content: space-between;
+            height: 50px;
+        }
     </style>
 </head>
 <body>
@@ -40,6 +51,10 @@
 
     <form th:action="@{/detail-book-reservation}" th:method="GET">
         <input type="submit" value="Detail Book Reservation">
+    </form>
+
+    <form th:action="@{/books/add}" th:method="GET">
+        <input type="submit" value="Add Book">
     </form>
 
     <form th:action="@{/}" th:method="GET">
@@ -55,12 +70,16 @@
     <form th:action="@{/bookReservation}" th:method="GET">
         <h2>Choose a book:</h2>
 
-        <ul>
-            <li th:each="book: ${books}" class="book-option" >
+        <div th:each="book: ${books}" id="books">
+            <div class="book-option" >
                 <input type="radio" th:value="${book.title}" name="selectedBook" th:id="${book.title}"/>
-                <label th:for="${book.title}" th:text="'Title: ' + ${book.title} + ', Genre: ' + ${book.genre} + ', Rating: ' + ${book.getAverageRating()}"></label>
-            </li>
-        </ul>
+                <label th:for="${book.title}" th:text="'Title: ' + ${book.title} + ', Genre: ' + ${book.genre} + ', Rating: ' + ${book.getAverageRating()} + ', Author Name: ' + ${book.author.getName()} + ', Author Surname: ' + ${book.author.getSurname()} " ></label>
+            </div>
+            <div id="books-buttons">
+                <input type="submit" value="Edit"/>
+                <input type="submit" value="Delete"/>
+            </div>
+        </div>
         <!-- Display radio buttons for each book,
              the value should be the book title
              and the displayed text should be:
