@@ -32,8 +32,8 @@ public class BookServiceImpl  implements BookService {
     }
 
     @Override
-    public Optional<Book> getBook(String text) {
-        return this.bookRepository.getBook(text);
+    public Book getBook(Long id) {
+        return this.bookRepository.getBook(id).orElseThrow();
     }
 
     @Override

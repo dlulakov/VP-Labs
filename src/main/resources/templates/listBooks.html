@@ -9,33 +9,40 @@
             margin: auto;
             font-family: Arial, sans-serif;
         }
+
         h1 {
             color: #333;
         }
+
         form {
             margin-top: 20px;
         }
+
         .book-option {
             margin: 10px 0;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
+
         .book-option:hover {
             background-color: #f5f5f5;
         }
+
         #confirm {
             display: flex;
             justify-content: start;
             align-content: center;
             padding: 10px;
         }
-        #books{
+
+        #books {
             display: flex;
             justify-content: space-between;
             align-content: center;
         }
-        #books-buttons{
+
+        #books-buttons {
             display: flex;
             justify-content: space-between;
             align-content: space-between;
@@ -49,6 +56,10 @@
 </header>
 <main>
 
+    <th:block th:if="${error != null}">
+        <div th:text="${error}"></div>
+    </th:block>
+
     <form th:action="@{/detail-book-reservation}" th:method="GET">
         <input type="submit" value="Detail Book Reservation">
     </form>
@@ -59,25 +70,35 @@
 
     <form th:action="@{/}" th:method="GET">
         <label for="searchTitle" th:text="Title"></label>
-        <input type="text" name="searchTitle" id="searchTitle" >
+        <input type="text" name="searchTitle" id="searchTitle">
         <label for="searchRating" th:text="Rating"></label>
-        <input type="number" name="searchRating" id="searchRating" >
+        <input type="number" name="searchRating" id="searchRating">
         <div id="confirm">
             <input type="submit" value="Search">
         </div>
     </form>
 
-    <form th:action="@{/bookReservation}" th:method="GET">
+    <form th:action="@{/book-reservation}" th:method="GET">
         <h2>Choose a book:</h2>
 
         <div th:each="book: ${books}" id="books">
-            <div class="book-option" >
+            <input type="radio" th:value="${book.id}" name="bookId" style="display: none" >
+            <div class="book-option">
                 <input type="radio" th:value="${book.title}" name="selectedBook" th:id="${book.title}"/>
-                <label th:for="${book.title}" th:text="'Title: ' + ${book.title} + ', Genre: ' + ${book.genre} + ', Rating: ' + ${book.getAverageRating()} + ', Author Name: ' + ${book.author.getName()} + ', Author Surname: ' + ${book.author.getSurname()} " ></label>
+                <label th:for="${book.title}"
+                       th:text="'Title: ' + ${book.title} + ', Genre: ' + ${book.genre} + ', Rating: ' + ${book.getAverageRating()} + ', Author Name: ' + ${book.author.getName()} + ', Author Surname: ' + ${book.author.getSurname()} "></label>
             </div>
             <div id="books-buttons">
-                <input type="submit" value="Edit"/>
-                <input type="submit" value="Delete"/>
+                <th:block>
+                    <a th:href="@{'/books/book-form/{id}' (id=${book.getId()})}">
+                        <input type="button" value="Edit">
+                    </a>
+                </th:block>
+                <th:block>
+                    <a th:href="@{'/books/delete/{id}' (id=${book.getId()})}">
+                        <input type="button" value="Delete">
+                    </a>
+                </th:block>
             </div>
         </div>
         <!-- Display radio buttons for each book,

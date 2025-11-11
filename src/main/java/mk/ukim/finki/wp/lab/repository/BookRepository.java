@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface BookRepository {
     List<Book> findAll();
     List<Book> searchBooks(String text, Double rating);
-    Optional<Book> getBook(String title);
+    Optional<Book> getBook(Long id);
     Book addBook (Book book);
     void delete (Long id);
 }

@@ -9,28 +9,35 @@
             margin: auto;
             font-family: Arial, sans-serif;
         }
+
         h1 {
             color: #333;
         }
+
         table {
             width: 100%;
             margin-top: 20px;
             border-collapse: collapse;
         }
+
         table, td, th {
             border: 1px solid #333;
         }
+
         th {
             background-color: #4CAF50;
             color: white;
             padding: 12px;
         }
+
         td {
             padding: 10px;
         }
+
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
         #confirm {
             display: flex;
             justify-content: center;
@@ -44,28 +51,28 @@
     <header>
         <h1>Book Reservation - Confirmation</h1>
     </header>
-    <table>
-        <tr>
-            <th colspan="2">Your Reservation Status</th>
-        </tr>
-        <tr>
-            <td><b>Reader Name</b></td>
-            <td th:text="${readerName}"><!-- Display reader name from servlet --></td>
-        </tr>
-        <tr>
-            <td><b>Client IP Address</b></td>
-            <td th:text="${readerIpAddress}"><!-- Display IP address from servlet --></td>
-        </tr>
-        <tr>
-            <td><b>Reservation for Book</b></td>
-            <td th:text="${selectedBook}"><!-- Display book title from servlet --></td>
-        </tr>
-        <tr>
-            <td><b>Number of copies</b></td>
-            <td th:text="${numCopies}"><!-- Display number of copies from servlet --></td>
-        </tr>
-    </table>
-    <form th:action="@{/bookReservation}" th:method="POST">
+    <form th:action="@{/book-reservation/add}" th:method="POST">
+        <table>
+            <tr>
+                <th colspan="2">Your Reservation Status</th>
+            </tr>
+            <tr>
+                <td><b>Reader Name</b></td>
+                <td th:text="${readerName}"><!-- Display reader name from servlet --></td>
+            </tr>
+            <tr>
+                <td><b>Client IP Address</b></td>
+                <td th:text="${readerIpAddress}"><!-- Display IP address from servlet --></td>
+            </tr>
+            <tr>
+                <td><b>Reservation for Book</b></td>
+                <td th:text="${selectedBook}"><!-- Display book title from servlet --></td>
+            </tr>
+            <tr>
+                <td><b>Number of copies</b></td>
+                <td th:text="${numCopies}"><!-- Display number of copies from servlet --></td>
+            </tr>
+        </table>
         <div id="confirm">
             <input type="submit" th:value="Submit"/>
         </div>

@@ -13,7 +13,7 @@ import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 
 import java.io.IOException;
 
-@WebServlet(name = "BookReservationServlet", value = "/bookReservation" )
+@WebServlet(name = "BookReservationServlet", value = "/bookReservation")
 public class BookReservationServlet extends HttpServlet {
     private final BookReservationService bookReservationService;
     private final SpringTemplateEngine springTemplateEngine;
@@ -33,6 +33,7 @@ public class BookReservationServlet extends HttpServlet {
         String readerName = req.getParameter("readerName");
         String readerAddress = req.getParameter("readerAddress");
         Integer numCopies = Integer.valueOf(req.getParameter("numCopies"));
+        Long bookId = Long.valueOf(req.getParameter("bookId"));
 
         webContext.setVariable("selectedBook", selectedBook);
         webContext.setVariable("readerName", readerName);
@@ -44,6 +45,7 @@ public class BookReservationServlet extends HttpServlet {
         getServletContext().setAttribute("selectedBook", selectedBook);
         getServletContext().setAttribute("readerName", readerName);
         getServletContext().setAttribute("readerAddress", readerAddress);
+        getServletContext().setAttribute("bookId", bookId);
         getServletContext().setAttribute("numCopies", numCopies);
         getServletContext().setAttribute("readerIpAddress", req.getRemoteAddr());
 
@@ -56,7 +58,8 @@ public class BookReservationServlet extends HttpServlet {
         String readerName = (String) getServletContext().getAttribute("readerName");
         String readerAddress = (String) getServletContext().getAttribute("readerAddress");
         Integer numCopies = (Integer) getServletContext().getAttribute("numCopies");
-        this.bookReservationService.placeReservation(selectedBook, readerName, readerAddress, numCopies);
+        Long bookId = (Long) getServletContext().getAttribute("bookId");
+        this.bookReservationService.placeReservation(bookId, selectedBook, readerName, readerAddress, numCopies);
         resp.sendRedirect("/");
     }
 }

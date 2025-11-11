@@ -45,16 +45,33 @@ public class BookController {
         return "redirect:/books";
     }
 
-    @PatchMapping("/edit/{bookId}")
+    @PostMapping("/edit/{bookId}")
     public String editBook(@PathVariable Long bookId, @RequestParam String title, @RequestParam String genre, @RequestParam Double averageRating, @RequestParam Long authorId){
         this.bookService.update(bookId,title, genre, averageRating, authorId);
+        if(bookId == null){
+            return "redirect/books?error=BookNotFound";
+        }
         return "redirect:/books";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteBook(@PathVariable Long id){
         this.bookService.delete(id);
         return "redirect:/books";
+    }
+
+    @GetMapping("/book-form/{id}")
+    public String getEditBookForm(@PathVariable Long id, Model model) {
+        Book book = this.bookService.getBook(id);
+        List<Author> authors = this.authorService.findAll();
+        model.addAttribute("book", book);
+        model.addAttribute("authors", authors);
+        return "book-form";
+    }
+
+    @GetMapping("/book-form")
+    public String addBook(Model model) {
+        return "book-form";
     }
 
 }

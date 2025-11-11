@@ -21,8 +21,8 @@ public class InMemoryBookRepository implements BookRepository {
     }
 
     @Override
-    public Optional<Book> getBook(String text) {
-        return DataHolder.books.stream().filter(book -> book.getTitle().equals(text)).findFirst();
+    public Optional<Book> getBook(Long id) {
+        return DataHolder.books.stream().filter(book -> book.getId().equals(id)).findFirst();
     }
 
     @Override

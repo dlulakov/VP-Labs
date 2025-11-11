@@ -10,10 +10,11 @@ public interface BookService {
 
     List<Book> searchBooks(String text, Double rating);
 
-    Optional<Book> getBook(String text);
+    Book getBook(Long id);
 
     Book addBook(String title, String genre, Double averageRating, Long authorId);
 
     Book update(Long bookId, String title, String genre, Double averageRating, Long authorId);
+
     void delete(Long bookId);
 }
