@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AuthorRepository {
     public List<Author> findAll();
+    void addLike(Long id);
 }

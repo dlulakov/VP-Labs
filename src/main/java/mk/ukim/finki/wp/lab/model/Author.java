@@ -11,6 +11,7 @@ public class Author {
     private String surname;
     private String country;
     private String biography;
+    private Integer likes;
 
     public Author(String name, String surname, String country, String biography) {
         this.id = (long) (Math.random() * 1000);
@@ -18,5 +19,6 @@ public class Author {
         this.surname = surname;
         this.country = country;
         this.biography = biography;
+        this.likes = 0;
     }
 }

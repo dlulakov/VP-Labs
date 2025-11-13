@@ -19,4 +19,9 @@ public class AuthorServiceImpl implements AuthorService {
     public List<Author> findAll() {
         return this.authorRepository.findAll();
     }
+
+    @Override
+    public void like(Long id) {
+        this.authorRepository.addLike(id);
+    }
 }

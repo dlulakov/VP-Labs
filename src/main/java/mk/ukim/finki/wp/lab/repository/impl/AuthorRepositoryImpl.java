@@ -27,4 +27,10 @@ public class AuthorRepositoryImpl implements AuthorRepository {
     public List<Author> findAll() {
         return this.authors;
     }
+
+    @Override
+    public void addLike(Long id) {
+        Author author1  = authors.stream().filter(author -> author.getId().equals(id)).findFirst().orElseThrow();
+        author1.setLikes(author1.getLikes() + 1);
+    }
 }

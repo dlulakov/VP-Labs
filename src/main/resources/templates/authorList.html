@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authror List</title>
+</head>
+<body>
+
+<ul>
+    <li th:each="author: ${authors}">
+        <p th:text="'Author Name: ' + ${author.name}"></p>
+        <p th:text="'Author Surname: ' + ${author.surname}"></p>
+        <p th:text="'Author Country: '+ ${author.country}"></p>
+        <p th:text="'Author Bio: ' + ${author.biography}"></p>
+        <p th:text="'Author Likes: ' + ${author.likes}"></p>
+        <form th:action="@{${'/authors/like/' + author.id}}" th:method="post" >
+            <input type="submit" value="Like">
+        </form>
+    </li>
+</ul>
+</body>
+</html>
