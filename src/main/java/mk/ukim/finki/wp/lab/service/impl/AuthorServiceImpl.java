@@ -1,17 +1,18 @@
 package mk.ukim.finki.wp.lab.service.impl;
 
 import mk.ukim.finki.wp.lab.model.Author;
-import mk.ukim.finki.wp.lab.repository.AuthorRepository;
+import mk.ukim.finki.wp.lab.repository.AuthorRepositoryJpa;
 import mk.ukim.finki.wp.lab.service.AuthorService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
-    private  final AuthorRepository authorRepository;
+    private  final AuthorRepositoryJpa authorRepository;
 
-    public AuthorServiceImpl(AuthorRepository authorRepository) {
+    public AuthorServiceImpl(AuthorRepositoryJpa authorRepository) {
         this.authorRepository = authorRepository;
     }
 
@@ -22,6 +23,11 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public void like(Long id) {
-        this.authorRepository.addLike(id);
+        this.authorRepository.incrementLikes(id);
+    }
+
+    @Override
+    public Optional<Author> getAuthor(Long id) {
+        return this.authorRepository.findById(id);
     }
 }

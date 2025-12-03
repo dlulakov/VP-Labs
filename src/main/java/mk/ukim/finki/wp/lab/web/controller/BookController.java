@@ -28,6 +28,8 @@ public class BookController {
         }
         List<Book> books = this.bookService.listAll();
 
+        books.forEach(System.out::println);
+
         model.addAttribute("books", books);
         return "listBooks";
     }
