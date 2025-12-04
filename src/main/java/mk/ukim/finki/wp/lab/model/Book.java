@@ -18,6 +18,7 @@ public class Book {
     private double averageRating;
 
     @ManyToOne()
+    @OrderBy("surname ASC")
     private Author author;
 
     public Book(String title, String genre, double averageRating, Author author) {
